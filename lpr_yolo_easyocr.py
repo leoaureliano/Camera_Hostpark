@@ -274,7 +274,8 @@ def ocr_easyocr(roi):
     img_proc = preprocess_roi_for_ocr(roi)
     # easyocr espera imagem RGB ou caminho; converte para RGB
     img_rgb = cv2.cvtColor(img_proc, cv2.COLOR_GRAY2RGB)
-    results = reader.readtext(img_rgb, detail=0, allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+    results = reader.readtext(img_rgb, detail=0, allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', paragraph=False)
+
     if results:
         # escolher o resultado mais longo/mais plausível
         results = [clean_plate_text(r) for r in results]
